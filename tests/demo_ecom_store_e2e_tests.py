@@ -5,6 +5,8 @@ import time
 
 import pytest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+
 from pages.account_page import AccountPage
 from pages.billing_page import BillingPage
 from pages.cart_page import CartPage
@@ -46,3 +48,19 @@ def test_sanity_end_to_end(driver):
 
     billing_page = BillingPage(driver)
     billing_page.verify_billing_details(account_page)
+
+def test_multiple_items_total_price_sum_up(driver):
+    driver.get("http://demostore.supersqa.com/")
+    driver.maximize_window()
+    home_page = HomePage(driver)
+    home_page.add_multiple_items_to_cart()
+    cart_page = CartPage(driver)
+    cart_page.go_to_cart_page()
+    cart_page.verify_total_price(home_page.items_total_price)
+    cart_page.proceed_to_checkout()
+    checkout_page = CheckoutPage(driver)
+    checkout_page.verify_checkout_total_price(home_page.items_total_price)
+
+
+
+

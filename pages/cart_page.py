@@ -45,4 +45,10 @@ class CartPage:
         else:
             print(f"Total price mismatch: Expected {total_price}, but found {displayed_total}")
 
+    def proceed_to_checkout(self):
+        wait = WebDriverWait(self.driver, 10)
+        proceed_to_checkout_button = wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(), 'Proceed to checkout')]")))
+        proceed_to_checkout_button.click()
+
+
 

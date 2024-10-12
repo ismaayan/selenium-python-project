@@ -42,3 +42,16 @@ class CheckoutPage:
             EC.element_to_be_clickable((By.ID, "place_order"))
         )
         place_order_btn.click()
+
+    def verify_checkout_total_price(self, total_price):
+        wait = WebDriverWait(self.driver, 10)
+        total_price_field = wait.until(EC.visibility_of_element_located((
+            By.CSS_SELECTOR,
+            "tr[class='order-total'] bdi:nth-child(1)")))
+        displayed_total = total_price_field.text.strip()
+
+
+        if displayed_total == total_price:
+            print(f"Total price verified: {displayed_total}")
+        else:
+            print(f"Total price mismatch: Expected {total_price}, but found {displayed_total}")

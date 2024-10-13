@@ -1,20 +1,10 @@
-# from selenium.webdriver.support import expected_conditions as EC
-# from selenium.webdriver.support.select import Select
-# from selenium.webdriver.support.ui import WebDriverWait
-import time
-
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-
 from pages.account_page import AccountPage
 from pages.billing_page import BillingPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
 from pages.home_page import HomePage
-
-
-# from selenium.webdriver.support import wait
 
 @pytest.fixture()
 def driver():

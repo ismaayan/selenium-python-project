@@ -1,4 +1,3 @@
-import time
 import pytest
 from selenium import webdriver
 from pages.AccountPage import AccountPage
@@ -59,9 +58,18 @@ def test_multiple_items_total_price_sum_up(driver):
     driver.maximize_window()
     home_page.add_multiple_items_to_cart()
 
-    time.sleep(5)
+
     cart_page.go_to_cart_page()
     cart_page.verify_total_price(home_page.items_total_price)
     cart_page.proceed_to_checkout()
 
     checkout_page.verify_checkout_total_price(home_page.items_total_price)
+
+def test_remove_item_from_cart(driver):
+    home_page = HomePage(driver)
+    navigate_to_demo_ecom_store(driver)
+    home_page.add_first_item_to_cart()
+    cart_page = CartPage(driver)
+    cart_page.go_to_cart_page()
+    cart_page.remove_item_from_cart()
+    cart_page.verify_item_removed_from_cart()

@@ -1,8 +1,10 @@
+import time
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
 
 class HomePage(BasePage):
+
     first_add_button = (By.CLASS_NAME, 'add_to_cart_button')
     album_item = (By.CSS_SELECTOR, "li.post-24 bdi:nth-child(1)")
     beanie_item = (By.CSS_SELECTOR, "li.post-16 ins bdi:nth-child(1)")
@@ -23,6 +25,7 @@ class HomePage(BasePage):
 
     def add_first_item_to_cart(self):
         self.do_click(self.first_add_button)
+        time.sleep(5)
 
     def add_multiple_items_to_cart(self):
         album_item_price = float(self.get_element_text(self.album_item).replace('$', ''))
@@ -36,3 +39,4 @@ class HomePage(BasePage):
         self.do_click(self.add_beanie_item)
         self.do_click(self.add_beanie_with_logo_item)
         self.do_click(self.add_belt_item)
+        time.sleep(5)

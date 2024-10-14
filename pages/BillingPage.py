@@ -3,6 +3,7 @@ from pages.BasePage import BasePage
 
 
 class BillingPage(BasePage):
+
     billing_details = (By.CSS_SELECTOR, 'section.woocommerce-customer-details>address')
 
     def __init__(self, driver):

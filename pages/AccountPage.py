@@ -41,5 +41,4 @@ class AccountPage(BasePage):
 
         assert self.driver.find_element(By.XPATH, f"//strong[contains(text(), '{self.random_name}')]").is_displayed()
 
-        print(self.random_name)
-        print(register_random_password)
+

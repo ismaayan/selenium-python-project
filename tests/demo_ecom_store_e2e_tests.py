@@ -39,7 +39,7 @@ def test_sanity_end_to_end(driver):
     cart_page.go_to_cart_page()
     cart_page.apply_coupon('SSQA100')
     cart_page.verify_cart_has_item()
-    cart_page.verify_total_price('0.00')
+    cart_page.verify_total_price(0.00)
 
     checkout_page = CheckoutPage(driver)
     checkout_page.fill_in_checkout_form()

@@ -11,7 +11,7 @@ class CartPage(BasePage):
     coupon_field = (By.ID, 'coupon_code')
     apply_button = (By.CSS_SELECTOR, '#post-7 > div > div > form > table > tbody > tr:nth-child(2) > td > div > button')
     proceed_to_checkout_button = (By.XPATH, "//a[contains(text(), 'Proceed to checkout')]")
-    total_price_field = (By.CSS_SELECTOR, '#post-7 > div > div > div.cart-collaterals > div > table > tbody > tr.order-total > td > strong > span > bdi')
+    total_price_field = (By.CSS_SELECTOR, "tr[class='order-total'] bdi:nth-child(1)")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -39,12 +39,13 @@ class CartPage(BasePage):
         raise Exception("Item not found in cart after 5 retries")
 
     def verify_total_price(self, total_price):
+        time.sleep(5)
         try:
             displayed_total_text = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located(self.total_price_field)
+                EC.presence_of_element_located(self.total_price_field)
             ).text
 
-            displayed_total = round(float(displayed_total_text.replace('$', '').replace(',', '')), 2)
+            displayed_total = round(float(displayed_total_text.replace('$', '')), 2)
             if displayed_total == round(total_price, 2):
                 print(f"Total price verified: ${displayed_total:.2f}")
             else:

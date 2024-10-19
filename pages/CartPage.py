@@ -7,25 +7,18 @@ from pages.BasePage import BasePage
 
 
 class CartPage(BasePage):
-
-    first_add_button = (By.CLASS_NAME, 'add_to_cart_button')
     coupon_field = (By.ID, 'coupon_code')
     apply_button = (By.CSS_SELECTOR, 'button.button')
     proceed_to_checkout_button = (By.XPATH, "//a[contains(text(), 'Proceed to checkout')]")
     total_price_field = (By.CSS_SELECTOR, "tr[class='order-total'] bdi:nth-child(1)")
-    remove_item_button = (By.CSS_SELECTOR,  "a.remove")
+    remove_item_button = (By.CSS_SELECTOR, "a.remove")
     item_in_the_cart = (By.CSS_SELECTOR, ".woocommerce-cart-form__cart-item.cart_item")
-
 
     def __init__(self, driver):
         super().__init__(driver)
 
     def go_to_cart_page(self):
         self.driver.get("http://demostore.supersqa.com/cart")
-
-
-    def add_first_item_to_cart(self):
-        self.do_click(self.first_add_button)
 
     def apply_coupon(self, coupon_code):
         self.do_send_keys(self.coupon_field, coupon_code)
@@ -65,8 +58,6 @@ class CartPage(BasePage):
         self.do_click(self.remove_item_button)
         time.sleep(5)
 
+
     def verify_item_removed_from_cart(self):
         self.is_element_absent(self.item_in_the_cart)
-
-
-

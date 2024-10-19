@@ -1,5 +1,10 @@
+import time
+
 import pytest
 from selenium import webdriver
+from selenium.common import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 from pages.AccountPage import AccountPage
 from pages.BillingPage import BillingPage
 from pages.CartPage import CartPage
@@ -47,6 +52,7 @@ def test_sanity_end_to_end(driver):
     checkout_page.fill_in_checkout_form()
 
     billing_page.verify_billing_details(account_page)
+    driver.quit()
 
 
 def test_multiple_items_total_price_sum_up(driver):
@@ -58,18 +64,25 @@ def test_multiple_items_total_price_sum_up(driver):
     driver.maximize_window()
     home_page.add_multiple_items_to_cart()
 
-
     cart_page.go_to_cart_page()
     cart_page.verify_total_price(home_page.items_total_price)
     cart_page.proceed_to_checkout()
 
     checkout_page.verify_checkout_total_price(home_page.items_total_price)
+    driver.quit()
+
 
 def test_remove_item_from_cart(driver):
     home_page = HomePage(driver)
+    cart_page = CartPage(driver)
+
     navigate_to_demo_ecom_store(driver)
     home_page.add_first_item_to_cart()
-    cart_page = CartPage(driver)
     cart_page.go_to_cart_page()
     cart_page.remove_item_from_cart()
     cart_page.verify_item_removed_from_cart()
+    driver.quit()
+
+
+
+

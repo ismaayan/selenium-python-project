@@ -6,7 +6,6 @@ from pages.BasePage import BasePage
 
 
 class CheckoutPage(BasePage):
-
     proceed_to_checkout_btn = (By.XPATH, "//a[contains(text(),'Proceed to checkout')]")
     first_name_field = (By.ID, 'billing_first_name')
     last_name_field = (By.ID, 'billing_last_name')

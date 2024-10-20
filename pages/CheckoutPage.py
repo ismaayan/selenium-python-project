@@ -17,6 +17,7 @@ class CheckoutPage(BasePage):
     phone_field = (By.ID, 'billing_phone')
     place_order_btn = (By.ID, "place_order")
     total_price_field = (By.CSS_SELECTOR,"tr[class='order-total'] bdi:nth-child(1)")
+    checkout_product_quantity = (By.CSS_SELECTOR, ".product-quantity")
 
     def __init__(self, driver):
         super().__init__(driver)

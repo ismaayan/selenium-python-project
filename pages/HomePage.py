@@ -17,6 +17,9 @@ class HomePage(BasePage):
     add_beanie_with_logo_item = (By.XPATH, "//a[@aria-label='Add “Beanie with Logo” to your cart']")
     add_belt_item = (By.XPATH, "//a[@aria-label='Add “Belt” to your cart']")
     cart_count_items = (By.XPATH, "//a[@class='cart-contents']/span[2]")
+    album_product_link = (By.XPATH, "//h2[contains(text(), 'Album')]")
+    add_to_cart_button = (By.NAME, "add-to-cart")
+
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -61,4 +64,7 @@ class HomePage(BasePage):
             print(f"Expected {expected_items_count} items, but got {actual_items_count}")
         else:
             pass
+
+    def enter_album_item_page(self):
+        self.do_click(self.album_product_link)
 

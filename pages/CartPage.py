@@ -13,6 +13,10 @@ class CartPage(BasePage):
     total_price_field = (By.CSS_SELECTOR, "tr[class='order-total'] bdi:nth-child(1)")
     remove_item_button = (By.CSS_SELECTOR, "a.remove")
     item_in_the_cart = (By.CSS_SELECTOR, ".woocommerce-cart-form__cart-item.cart_item")
+    cart_item_quantity_field = (By.ID, "quantity_67153f1e71643")
+
+
+
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -58,6 +62,20 @@ class CartPage(BasePage):
         self.do_click(self.remove_item_button)
         time.sleep(5)
 
-
     def verify_item_removed_from_cart(self):
         self.is_element_absent(self.item_in_the_cart)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

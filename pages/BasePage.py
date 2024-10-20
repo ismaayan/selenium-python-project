@@ -40,14 +40,7 @@ class BasePage:
     def clear_text(self, by_locator):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(by_locator)).clear()
 
-    def get_attribute_value(self, by_locator):
-        element = self.driver.find_element(by_locator)
-        attribute_value = element.get_attribute("value")
-        return attribute_value
 
-    def set_attribute_value(self, by_locator, new_value):
-        element = self.driver.find_element(by_locator)
-        self.driver.execute_script("arguments[0].setAttribute('value', arguments[1])", element, new_value)
 
 
 

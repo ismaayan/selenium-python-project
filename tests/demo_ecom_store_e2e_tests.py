@@ -1,5 +1,4 @@
 import time
-import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.AccountPage import AccountPage
@@ -12,7 +11,6 @@ from pages.ItemPage import ItemPage
 BASE_URL = "http://demostore.supersqa.com/"
 
 
-@pytest.fixture(scope="function")
 def driver():
     driver = webdriver.Chrome()
     driver.implicitly_wait(10)
@@ -94,6 +92,22 @@ def test_quantity_item_update(driver):
     assert cart_quantity.get_attribute("value") == "3", "Quantity is incorrect!"
 
     print("Test passed: Quantity is updated to 3.")
+
+
+def test_lost_password_link(driver):
+    account_page = AccountPage(driver)
+
+    navigate_to_demo_ecom_store(driver)
+    account_page.open_account_page()
+    account_page.verify_lost_password_page_opened()
+
+
+
+
+
+
+
+
 
 
 

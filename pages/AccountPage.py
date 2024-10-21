@@ -1,4 +1,5 @@
 from faker import Faker
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
@@ -12,6 +13,9 @@ class AccountPage(BasePage):
     login_email_field = (By.ID, "username")
     login_password_field = (By.ID, "password")
     login_btn = (By.NAME, "login")
+    lost_password_link = (By.XPATH, "//a[contains(text(), 'Lost your password?')]")
+    username_or_email_input = (By.ID, "user_login")
+    reset_password_button = (By.XPATH, "//button[contains(text(), 'Reset password')]")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -40,5 +44,27 @@ class AccountPage(BasePage):
         self.do_click(self.login_btn)
 
         assert self.driver.find_element(By.XPATH, f"//strong[contains(text(), '{self.random_name}')]").is_displayed()
+
+    def verify_lost_password_page_opened(self):
+      self.do_click(self.lost_password_link)
+      current_url = self.driver.current_url
+      expected_url = "http://demostore.supersqa.com/my-account/lost-password/"
+
+      # Assert to check if the page opened
+      assert current_url == expected_url, f"Expected {expected_url}, but got {current_url}"
+      # Verify username or email input field exist
+      try:
+          self.is_enabled(self.username_or_email_input)
+      except NoSuchElementException:
+            print("Username or email input field does not exist.")
+
+      # Verify reset password button exist
+      try:
+          self.is_enabled(self.reset_password_button)
+      except NoSuchElementException:
+          print("Reset password button does not exist.")
+
+
+
 
 

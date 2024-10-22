@@ -110,6 +110,15 @@ def test_search_field(driver):
     navigate_to_demo_ecom_store(driver)
     home_page.verify_search_field('logo')
 
+def test_homepage_header_and_footer(driver):
+    home_page = HomePage(driver)
+
+    navigate_to_demo_ecom_store(driver)
+    home_page.verify_header()
+    home_page.verify_footer()
+
+
+
 
 
 

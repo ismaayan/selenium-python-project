@@ -20,6 +20,10 @@ class HomePage(BasePage):
     add_to_cart_button = (By.NAME, "add-to-cart")
     search_field = (By.ID, "woocommerce-product-search-field-0")
     items_list = (By.CSS_SELECTOR, ".woocommerce-loop-product__title")
+    header_navbar = (By.CSS_SELECTOR, ".nav-menu li a")
+    cart_icon = (By.CSS_SELECTOR, "a.cart-contents, .site-header-cart .widget_shopping_cart")
+    header_price_field = (By.CSS_SELECTOR, "#site-header-cart a span")
+    footer_text = (By.CLASS_NAME, "site-info")
 
 
     def __init__(self, driver):
@@ -74,7 +78,7 @@ class HomePage(BasePage):
         self.press_enter()
 
         # Get the list of search results
-        items = self.driver.find_elements(By.CSS_SELECTOR, ".woocommerce-loop-product__title")
+        items = self.driver.find_elements(self.items_list)
 
         # Verify that at least one item contains the word 'logo'
         found_logo = False
@@ -87,6 +91,53 @@ class HomePage(BasePage):
             print("Test Failed: 'logo' not found in the search results.")
         else:
             pass
+
+    def verify_header(self):
+        # Verify title
+        self.get_title('Demo eCom Store – Just another WordPress site')
+        # Verify search field
+        self.is_enabled(self.search_field)
+       # Verify navigation bar
+        expected_header_links = ['Home', 'Cart', 'Checkout', 'My account', 'Sample Page']
+
+        actual_header_links = self.driver.find_elements(By.CSS_SELECTOR, 'ul.nav-menu li a')
+
+        # Extract the text from the found links
+        header_links_texts = [link.text for link in actual_header_links]
+
+        # Verify each expected link is present in the header
+        for link in expected_header_links:
+            assert(link, header_links_texts)
+
+        # Verify cart elements
+        expected_cart_default_price = '$0.00'
+        actual_cart_default_price = self.get_element_text(self.header_price_field)
+        assert actual_cart_default_price == expected_cart_default_price, (f"Expected text : {expected_cart_default_price}"
+                                                                                 f", but got '{actual_cart_default_price}'")
+
+        expected_default_items_count = '0 items'
+        actual_cart_default_items_count = self.get_element_text(self.cart_count_items)
+        assert actual_cart_default_items_count == expected_default_items_count, (f"Expected text : {expected_default_items_count}"
+                                                                                 f", but got '{actual_cart_default_items_count}'")
+
+        self.is_enabled(self.cart_icon)
+
+
+    def verify_footer(self):
+        expected_footer_text = "© Demo eCom Store 2024\nBuilt with Storefront & WooCommerce."
+        actual_footer_text = self.get_element_text(self.footer_text)
+
+        assert actual_footer_text == expected_footer_text , f"Expected '{expected_footer_text}', but got '{actual_footer_text}'"
+
+
+
+
+
+
+
+
+
+
 
 
 

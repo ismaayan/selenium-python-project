@@ -1,6 +1,8 @@
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage:
@@ -39,6 +41,14 @@ class BasePage:
 
     def clear_text(self, by_locator):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(by_locator)).clear()
+
+
+    def press_enter(self):
+        action = ActionChains(self.driver)
+        action.send_keys(Keys.ENTER).perform()
+
+
+
 
 
 

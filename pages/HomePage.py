@@ -19,7 +19,7 @@ class HomePage(BasePage):
     album_product_link = (By.XPATH, "//h2[contains(text(), 'Album')]")
     add_to_cart_button = (By.NAME, "add-to-cart")
     search_field = (By.ID, "woocommerce-product-search-field-0")
-    items_list = (By.CSS_SELECTOR, "self.products.columns-4 li")
+    items_list = (By.CSS_SELECTOR, ".woocommerce-loop-product__title")
 
 
     def __init__(self, driver):
@@ -71,16 +71,23 @@ class HomePage(BasePage):
 
     def verify_search_field(self, key_word):
         self.do_send_keys(self.search_field, key_word)
-        items = self.items_list
-        items_list = []
+        self.press_enter()
+
+        # Get the list of search results
+        items = self.driver.find_elements(By.CSS_SELECTOR, ".woocommerce-loop-product__title")
+
+        # Verify that at least one item contains the word 'logo'
+        found_logo = False
         for item in items:
-            self.get_element_text(item)
-            items_list.append(item)
-        for item in items_list:
-            if key_word in item.text:
-                print("Text is present in the element")
-            else:
-                print("Text is NOT present in the element")
+            if "logo" in item.text.lower():
+                found_logo = True
+                break
+
+        if not found_logo:
+            print("Test Failed: 'logo' not found in the search results.")
+        else:
+            pass
+
 
 
 

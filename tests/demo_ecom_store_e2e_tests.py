@@ -93,9 +93,7 @@ def test_quantity_item_update(driver):
     cart_page.go_to_cart_page()
     time.sleep(3)
     cart_quantity = driver.find_element(By.CSS_SELECTOR, ".quantity input")
-    assert cart_quantity.get_attribute("value") == "3", "Quantity is incorrect!"
-
-    print("Test passed: Quantity is updated to 3.")
+    assert cart_quantity.get_attribute("value") == "3"
 
 
 def test_lost_password_link(driver):
@@ -104,6 +102,7 @@ def test_lost_password_link(driver):
     navigate_to_demo_ecom_store(driver)
     account_page.open_account_page()
     account_page.verify_lost_password_page_opened()
+
 
 def test_search_field(driver):
     home_page = HomePage(driver)

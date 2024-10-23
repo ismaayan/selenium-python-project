@@ -15,8 +15,10 @@ BASE_URL = "http://demostore.supersqa.com/"
 
 
 @pytest.fixture
-def driver():
+def set_up():
     driver = webdriver.Chrome()
+    navigate_to_demo_ecom_store(driver)
+    driver.maximize_window()
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
@@ -27,14 +29,15 @@ def navigate_to_demo_ecom_store(driver):
     return driver
 
 
-def test_sanity_end_to_end(driver):
+def test_sanity_end_to_end(set_up):
+    driver = set_up
     account_page = AccountPage(driver)
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
     checkout_page = CheckoutPage(driver)
     billing_page = BillingPage(driver)
 
-    navigate_to_demo_ecom_store(driver)
+
     driver.maximize_window()
 
     account_page.open_account_page()
@@ -55,13 +58,12 @@ def test_sanity_end_to_end(driver):
 
 
 
-def test_multiple_items_total_price_sum_up(driver):
+def test_multiple_items_total_price_sum_up(set_up):
+    driver = set_up
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
     checkout_page = CheckoutPage(driver)
 
-    navigate_to_demo_ecom_store(driver)
-    driver.maximize_window()
     home_page.add_multiple_items_to_cart()
 
     cart_page.go_to_cart_page()
@@ -71,23 +73,23 @@ def test_multiple_items_total_price_sum_up(driver):
     checkout_page.verify_checkout_total_price(home_page.items_total_price)
 
 
-def test_remove_item_from_cart(driver):
+def test_remove_item_from_cart(set_up):
+    driver = set_up
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
 
-    navigate_to_demo_ecom_store(driver)
     home_page.add_first_item_to_cart()
     cart_page.go_to_cart_page()
     cart_page.remove_item_from_cart()
     cart_page.verify_item_removed_from_cart()
 
 
-def test_quantity_item_update(driver):
+def test_quantity_item_update(set_up):
+    driver = set_up
     cart_page = CartPage(driver)
     home_page = HomePage(driver)
     item_page = ItemPage(driver)
 
-    navigate_to_demo_ecom_store(driver)
     home_page.enter_album_item_page()
     item_page.update_album_item_quantity_and_add_to_cart(3)
     cart_page.go_to_cart_page()
@@ -96,24 +98,25 @@ def test_quantity_item_update(driver):
     assert cart_quantity.get_attribute("value") == "3"
 
 
-def test_lost_password_link(driver):
+def test_lost_password_link(set_up):
+    driver = set_up
     account_page = AccountPage(driver)
 
-    navigate_to_demo_ecom_store(driver)
     account_page.open_account_page()
     account_page.verify_lost_password_page_opened()
 
 
-def test_search_field(driver):
+def test_search_field(set_up):
+    driver = set_up
     home_page = HomePage(driver)
 
-    navigate_to_demo_ecom_store(driver)
     home_page.verify_search_field('logo')
 
-def test_homepage_header_and_footer(driver):
+
+def test_homepage_header_and_footer(set_up):
+    driver = set_up
     home_page = HomePage(driver)
 
-    navigate_to_demo_ecom_store(driver)
     home_page.verify_header()
     home_page.verify_footer()
 

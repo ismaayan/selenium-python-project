@@ -48,10 +48,11 @@ class CartPage(BasePage):
             ).text
 
             displayed_total = round(float(displayed_total_text.replace('$', '')), 2)
-            if displayed_total == round(total_price, 2):
-                print(f"Total price verified: ${displayed_total:.2f}")
-            else:
+            if displayed_total != round(total_price, 2):
                 print(f"Total price mismatch: Expected ${total_price:.2f}, but found ${displayed_total:.2f}")
+            else:
+                pass
+
         except TimeoutException:
             raise Exception("Failed to find total price element on the page")
 

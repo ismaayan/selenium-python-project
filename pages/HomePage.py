@@ -36,12 +36,11 @@ class HomePage(BasePage):
 
     def add_first_item_to_cart(self):
         self.do_click(self.first_add_button)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located
-                                             (self.cart_count_items))
+        time.sleep(3)
         actual_items_count = self.get_element_text(self.cart_count_items)
         expected_items_count = "1 item"
         if actual_items_count != expected_items_count:
-            print(f"Expected {expected_items_count} items, but got {actual_items_count}")
+            print(f"Expected {expected_items_count}, but got {actual_items_count}")
         else:
             pass
 

@@ -19,7 +19,6 @@ class HomePage(BasePage):
     album_product_link = (By.XPATH, "//h2[contains(text(), 'Album')]")
     add_to_cart_button = (By.NAME, "add-to-cart")
     search_field = (By.ID, "woocommerce-product-search-field-0")
-    items_list = (By.CSS_SELECTOR, ".woocommerce-loop-product__title")
     header_navbar = (By.CSS_SELECTOR, ".nav-menu li a")
     cart_icon = (By.CSS_SELECTOR, "a.cart-contents, .site-header-cart .widget_shopping_cart")
     header_price_field = (By.CSS_SELECTOR, "#site-header-cart a span")
@@ -77,19 +76,15 @@ class HomePage(BasePage):
         self.press_enter()
 
         # Get the list of search results
-        items = self.driver.find_elements(self.items_list)
-
-        # Verify that at least one item contains the word 'logo'
-        found_logo = False
+        items = self.driver.find_elements(By.CLASS_NAME, "woocommerce-loop-product__title")
+        # verify 'logo' word exist in the items list results
         for item in items:
-            if "logo" in item.text.lower():
-                found_logo = True
-                break
+            items_text = item.text.lower()
+            if "logo" not in items_text:
+                print("Test Failed: 'logo' not found in the search results.")
+            else:
+                pass
 
-        if not found_logo:
-            print("Test Failed: 'logo' not found in the search results.")
-        else:
-            pass
 
     def verify_header(self):
         # Verify title

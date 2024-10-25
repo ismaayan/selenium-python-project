@@ -1,6 +1,5 @@
 import time
 import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.AccountPage import AccountPage
 from pages.BillingPage import BillingPage
@@ -10,40 +9,19 @@ from pages.HomePage import HomePage
 from pages.ItemPage import ItemPage
 
 
-BASE_URL = "http://demostore.supersqa.com/"
 
-
-
-@pytest.fixture
-def set_up():
-    driver = webdriver.Chrome()
-    navigate_to_demo_ecom_store(driver)
-    driver.maximize_window()
-    driver.implicitly_wait(10)
-    yield driver
-    driver.quit()
-
-
-def navigate_to_demo_ecom_store(driver):
-    driver.get(BASE_URL)
-    return driver
-
-
-def test_sanity_end_to_end(set_up):
-    driver = set_up
+def test_sanity_end_to_end(setup):
+    driver = setup
     account_page = AccountPage(driver)
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
     checkout_page = CheckoutPage(driver)
     billing_page = BillingPage(driver)
 
-
-    driver.maximize_window()
-
     account_page.open_account_page()
     account_page.register_user_and_login()
 
-    navigate_to_demo_ecom_store(driver)
+    home_page.go_to_homepage()
     home_page.shop_item_count()
     home_page.add_first_item_to_cart()
 
@@ -58,8 +36,8 @@ def test_sanity_end_to_end(set_up):
 
 
 
-def test_multiple_items_total_price_sum_up(set_up):
-    driver = set_up
+def test_multiple_items_total_price_sum_up(setup):
+    driver = setup
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
     checkout_page = CheckoutPage(driver)
@@ -73,8 +51,8 @@ def test_multiple_items_total_price_sum_up(set_up):
     checkout_page.verify_checkout_total_price(home_page.items_total_price)
 
 
-def test_remove_item_from_cart(set_up):
-    driver = set_up
+def test_remove_item_from_cart(setup):
+    driver = setup
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
 
@@ -84,8 +62,8 @@ def test_remove_item_from_cart(set_up):
     cart_page.verify_item_removed_from_cart()
 
 
-def test_quantity_item_update(set_up):
-    driver = set_up
+def test_quantity_item_update(setup):
+    driver = setup
     cart_page = CartPage(driver)
     home_page = HomePage(driver)
     item_page = ItemPage(driver)
@@ -98,23 +76,23 @@ def test_quantity_item_update(set_up):
     assert cart_quantity.get_attribute("value") == "3"
 
 
-def test_lost_password_link(set_up):
-    driver = set_up
+def test_lost_password_link(setup):
+    driver = setup
     account_page = AccountPage(driver)
 
     account_page.open_account_page()
     account_page.verify_lost_password_page_opened()
 
 
-def test_search_field(set_up):
-    driver = set_up
+def test_search_field(setup):
+    driver = setup
     home_page = HomePage(driver)
 
     home_page.verify_search_field('logo')
 
 
-def test_homepage_header_and_footer(set_up):
-    driver = set_up
+def test_homepage_header_and_footer(setup):
+    driver = setup
     home_page = HomePage(driver)
 
     home_page.verify_header()

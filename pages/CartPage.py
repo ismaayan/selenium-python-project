@@ -16,8 +16,6 @@ class CartPage(BasePage):
     cart_item_quantity_field = (By.ID, "quantity_67153f1e71643")
 
 
-
-
     def __init__(self, driver):
         super().__init__(driver)
 

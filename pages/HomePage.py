@@ -29,6 +29,9 @@ class HomePage(BasePage):
         super().__init__(driver)
         self.items_total_price = None
 
+    def go_to_homepage(self):
+        self.driver.get("http://demostore.supersqa.com/")
+
     def shop_item_count(self):
         shop_items = self.driver.find_elements(By.CSS_SELECTOR, "#main ul li.product")
         assert len(shop_items) == 16, f"Expected 16 items, but found {len(shop_items)}"

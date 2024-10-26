@@ -46,7 +46,8 @@ This project is licensed under the MIT License.
 
 <h2>
     Contact with me<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/Handshake.gif" height="32px">
-</h2> </div>
+</h2> 
 
 | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/GitHub.png" alt="Github logo" width="34">](https://github.com/ismaayan/MaayanI) | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/email.png" alt="email logo" height="32">](mailto:maayan.isr89@gmail.com) | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/linkedin-icon.png" alt="Linkedin Logo" width="32">](https://www.linkedin.com/in/maayan-israel/) | 
 |:---:|:---:|:---:|
+</div>

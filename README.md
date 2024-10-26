@@ -55,8 +55,7 @@ This project is licensed under the MIT License.
 
 | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/GitHub.png" alt="Github logo" width="34">](https://github.com/ismaayan/MaayanI) | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/email.png" alt="email logo" height="32">](mailto:maayan.isr89@gmail.com) | [<img src="https://github.com/ricardo1470/ricardo1470/blob/master/img/linkedin-icon.png" alt="Linkedin Logo" width="32">](https://www.linkedin.com/in/maayan-israel/) | 
 |:---:|:---:|:---:|
-<<<<<<< HEAD
+
 </div>
-=======
-</div>
->>>>>>> 418ecdcc22a35cb6f4cefadfa94a0f581213eb2e
+
+

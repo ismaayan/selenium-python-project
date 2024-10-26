@@ -1,5 +1,4 @@
 import time
-import pytest
 from selenium.webdriver.common.by import By
 from pages.AccountPage import AccountPage
 from pages.BillingPage import BillingPage

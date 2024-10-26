@@ -11,6 +11,7 @@ This project demonstrates test automation using Selenium WebDriver with Python, 
 ## Features
 * Browser Automation: Executes automated test flows for user actions, page navigation, and validation.
 * Page Object Model (POM): Organizes tests and enhances maintainability.
+* Base page: serves as a foundational class that encapsulates common functionalities and initialization tasks for web pages
 * Pytest Integration: Facilitates testing with robust fixtures and modular setup.
 * Data-Driven Testing: Incorporates Faker for random data generation.
 

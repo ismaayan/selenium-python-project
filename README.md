@@ -1,4 +1,6 @@
-# Selenium with Python project
+<h1 align="center">
+     Selenium with Python project
+</h1>
 Welcome to the Selenium Python Project repository! 
 This project demonstrates test automation using Selenium WebDriver with Python, targeting an e-commerce website demo. It covers common end-to-end scenarios in a structured, modular format.
 

@@ -9,8 +9,7 @@ from pages.ItemPage import ItemPage
 
 
 
-def test_sanity_end_to_end(setup):
-    driver = setup
+def test_sanity_end_to_end(driver):
     account_page = AccountPage(driver)
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
@@ -35,8 +34,7 @@ def test_sanity_end_to_end(setup):
 
 
 
-def test_multiple_items_total_price_sum_up(setup):
-    driver = setup
+def test_multiple_items_total_price_sum_up(driver):
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
     checkout_page = CheckoutPage(driver)
@@ -50,8 +48,7 @@ def test_multiple_items_total_price_sum_up(setup):
     checkout_page.verify_checkout_total_price(home_page.items_total_price)
 
 
-def test_remove_item_from_cart(setup):
-    driver = setup
+def test_remove_item_from_cart(driver):
     home_page = HomePage(driver)
     cart_page = CartPage(driver)
 
@@ -61,8 +58,7 @@ def test_remove_item_from_cart(setup):
     cart_page.verify_item_removed_from_cart()
 
 
-def test_quantity_item_update(setup):
-    driver = setup
+def test_quantity_item_update(driver):
     cart_page = CartPage(driver)
     home_page = HomePage(driver)
     item_page = ItemPage(driver)
@@ -75,23 +71,20 @@ def test_quantity_item_update(setup):
     assert cart_quantity.get_attribute("value") == "3"
 
 
-def test_lost_password_link(setup):
-    driver = setup
+def test_lost_password_link(driver):
     account_page = AccountPage(driver)
 
     account_page.open_account_page()
     account_page.verify_lost_password_page_opened()
 
 
-def test_search_field(setup):
-    driver = setup
+def test_search_field(driver):
     home_page = HomePage(driver)
 
     home_page.verify_search_field('logo')
 
 
-def test_homepage_header_and_footer(setup):
-    driver = setup
+def test_homepage_header_and_footer(driver):
     home_page = HomePage(driver)
 
     home_page.verify_header()

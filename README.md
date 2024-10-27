@@ -19,6 +19,7 @@ This project demonstrates test automation using Selenium WebDriver with Python, 
 ### Prerequisites
 * Python 3.8+
 * ChromeDriver (ensure it matches your Chrome version)
+* FirefoxDriver (ensure it matches your Chrome version)
 * Required packages: Install from requirements.txt
 ```bash
 pip install -r requirements.txt

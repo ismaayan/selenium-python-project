@@ -103,7 +103,7 @@ class HomePage(BasePage):
         actual_header_links_texts = [link.text for link in actual_header_links]
 
         # Verify each expected link is present in the header
-        assert(expected_header_links, actual_header_links_texts)
+        assert expected_header_links, actual_header_links_texts
 
         # Verify cart elements
         expected_cart_default_price = '$0.00'

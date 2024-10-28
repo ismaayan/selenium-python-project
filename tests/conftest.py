@@ -19,8 +19,10 @@ def driver(request):
     # Default driver value
     driver = ""
     # Option setup to run in headless mode (in order to run this in GH Actions)
-    options = Options()
-    # options.add_argument('--headless')
+    options = webdriver.ChromeOptions()
+    # options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     # Setup
     print(f"\nSetting up: {browser} driver")
     if browser == "chrome":

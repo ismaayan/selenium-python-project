@@ -9,6 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      DISPLAY: ":99"   # Needed for headless mode on Linux
+      SELENIUM_TIMEOUT: "120"
 
     steps:
     - name: Checkout code
@@ -31,7 +34,6 @@ jobs:
         pip install webdriver-manager
 
     - name: Run tests
-      env:
-        DISPLAY: ":99"  # Needed for headless mode on Linux
       run: |
         pytest tests/
+

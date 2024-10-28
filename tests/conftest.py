@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+
 
 BASE_URL = "http://demostore.supersqa.com/"
 
@@ -18,17 +18,21 @@ def driver(request):
     browser = request.config.getoption("--browser")
     # Default driver value
     driver = ""
-    # Option setup to run in headless mode (in order to run this in GH Actions)
-    options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+
     # Setup
     print(f"\nSetting up: {browser} driver")
     if browser == "chrome":
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
         driver = webdriver.Chrome(options=options)
     elif browser == "firefox":
-        driver = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        driver = webdriver.Firefox(options=options)
     # Implicit wait setup for our framework
     navigate_to_demo_ecom_store(driver)
     driver.maximize_window()

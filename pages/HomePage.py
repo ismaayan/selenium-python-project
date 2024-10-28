@@ -100,11 +100,10 @@ class HomePage(BasePage):
         actual_header_links = self.driver.find_elements(By.CSS_SELECTOR, 'ul.nav-menu li a')
 
         # Extract the text from the found links
-        header_links_texts = [link.text for link in actual_header_links]
+        actual_header_links_texts = [link.text for link in actual_header_links]
 
         # Verify each expected link is present in the header
-        for link in expected_header_links:
-            assert(link, header_links_texts)
+        assert(expected_header_links, actual_header_links_texts)
 
         # Verify cart elements
         expected_cart_default_price = '$0.00'

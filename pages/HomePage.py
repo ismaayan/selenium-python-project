@@ -103,13 +103,14 @@ class HomePage(BasePage):
         actual_header_links_texts = [link.text for link in actual_header_links]
 
         # Verify each expected link is present in the header
-        assert expected_header_links, actual_header_links_texts
+        assert expected_header_links == actual_header_links_texts, (f"Expected header links : {expected_header_links}"
+                                                                    f", but got '{actual_header_links_texts}'")
 
         # Verify cart elements
         expected_cart_default_price = '$0.00'
         actual_cart_default_price = self.get_element_text(self.header_price_field)
         assert actual_cart_default_price == expected_cart_default_price, (f"Expected text : {expected_cart_default_price}"
-                                                                                 f", but got '{actual_cart_default_price}'")
+                                                                          f", but got '{actual_cart_default_price}'")
 
         expected_default_items_count = '0 items'
         actual_cart_default_items_count = self.get_element_text(self.cart_count_items)

@@ -16,6 +16,8 @@ class AccountPage(BasePage):
     lost_password_link = (By.XPATH, "//a[contains(text(), 'Lost your password?')]")
     username_or_email_input = (By.ID, "user_login")
     reset_password_button = (By.XPATH, "//button[contains(text(), 'Reset password')]")
+    recent_orders_link = (By.LINK_TEXT, 'recent orders')
+
 
     def __init__(self, driver):
         super().__init__(driver)

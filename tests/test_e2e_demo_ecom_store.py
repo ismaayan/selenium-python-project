@@ -31,6 +31,7 @@ def test_sanity_end_to_end(driver):
     checkout_page.fill_in_checkout_form()
 
     billing_page.verify_billing_details(account_page)
+    billing_page.verify_order_history_in_user_account()
 
 
 
@@ -88,6 +89,7 @@ def test_homepage_header_and_footer(driver):
     home_page = HomePage(driver)
 
     home_page.verify_header()
+
     home_page.verify_footer()
 
 

@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+
 class HomePage(BasePage):
     first_add_button = (By.LINK_TEXT, 'Add to cart')
     album_item = (By.CSS_SELECTOR, "li.post-24 bdi:nth-child(1)")
@@ -111,6 +112,7 @@ class HomePage(BasePage):
         actual_cart_default_price = self.get_element_text(self.header_price_field)
         assert actual_cart_default_price == expected_cart_default_price, (f"Expected text : {expected_cart_default_price}"
                                                                           f", but got '{actual_cart_default_price}'")
+
 
         expected_default_items_count = '0 items'
         actual_cart_default_items_count = self.get_element_text(self.cart_count_items)

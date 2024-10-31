@@ -89,7 +89,6 @@ def test_homepage_header_and_footer(driver):
     home_page = HomePage(driver)
 
     home_page.verify_header()
-
     home_page.verify_footer()
 
 

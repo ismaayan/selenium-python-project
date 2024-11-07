@@ -1,4 +1,5 @@
 import time
+
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 from selenium.webdriver.support.ui import WebDriverWait
@@ -62,7 +63,6 @@ class HomePage(BasePage):
         self.do_click(self.add_beanie_item)
         self.do_click(self.add_beanie_with_logo_item)
         self.do_click(self.add_belt_item)
-        time.sleep(5)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located
                                              (self.cart_count_items))
         actual_items_count = self.get_element_text(self.cart_count_items)
@@ -109,9 +109,11 @@ class HomePage(BasePage):
 
         # Verify cart elements
         expected_cart_default_price = '$0.00'
-        actual_cart_default_price = self.get_element_text(self.header_price_field)
-        assert actual_cart_default_price == expected_cart_default_price, (f"Expected text : {expected_cart_default_price}"
-                                                                          f", but got '{actual_cart_default_price}'")
+        # actual_cart_default_price = self.get_element_text(self.header_price_field)
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element
+                                             (self.header_price_field, expected_cart_default_price))
+        # assert actual_cart_default_price == expected_cart_default_price, (f"Expected text : {expected_cart_default_price}"
+        #                                                                   f", but got '{actual_cart_default_price}'")
 
 
         expected_default_items_count = '0 items'

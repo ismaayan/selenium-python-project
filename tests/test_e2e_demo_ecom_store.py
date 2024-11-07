@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from pages.AccountPage import AccountPage
 from pages.BillingPage import BillingPage
@@ -67,7 +66,6 @@ def test_quantity_item_update(driver):
     home_page.enter_album_item_page()
     item_page.update_album_item_quantity_and_add_to_cart(3)
     cart_page.go_to_cart_page()
-    time.sleep(3)
     cart_quantity = driver.find_element(By.CSS_SELECTOR, ".quantity input")
     assert cart_quantity.get_attribute("value") == "3"
 
@@ -89,7 +87,6 @@ def test_homepage_header_and_footer(driver):
     home_page = HomePage(driver)
 
     home_page.verify_header()
-
     home_page.verify_footer()
 
 

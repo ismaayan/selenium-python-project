@@ -35,10 +35,12 @@ class CartPage(BasePage):
                 return
             except NoSuchElementException:
                 print('Item not in cart. Retrying after 2 seconds')
+                time.sleep(2)
                 self.driver.refresh()
         raise Exception("Item not found in cart after 5 retries")
 
     def verify_total_price(self, total_price):
+        time.sleep(5)
         try:
             displayed_total_text = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located(self.total_price_field)

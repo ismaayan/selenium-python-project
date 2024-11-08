@@ -63,10 +63,12 @@ class HomePage(BasePage):
         self.do_click(self.add_beanie_item)
         self.do_click(self.add_beanie_with_logo_item)
         self.do_click(self.add_belt_item)
+        time.sleep(5)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located
                                              (self.cart_count_items))
         actual_items_count = self.get_element_text(self.cart_count_items)
         expected_items_count = "4 items"
+        time.sleep(5)
         if actual_items_count != expected_items_count:
             print(f"Expected {expected_items_count} items, but got {actual_items_count}")
         else:
